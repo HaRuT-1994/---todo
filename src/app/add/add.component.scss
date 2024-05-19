@@ -1,0 +1,44 @@
+form {
+  margin: 40px;
+
+  div {
+    margin: 20px 0;
+  }
+
+  button {
+    display: block;
+    padding: 5px 10px;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.required::after {
+  content: " *";
+  color: red;
+}
+
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.control {
+  width: 80vw;
+  position: relative;
+  display: inline-block;
+}
+
+.error-message {
+  position: absolute;
+  bottom: -15px;
+  left: 0;
+  color: red;
+  font-size: 12px;
+}

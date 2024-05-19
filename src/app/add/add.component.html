@@ -1,0 +1,66 @@
+<form [formGroup]="todoForm" (ngSubmit)="createTODO()">
+  <div class="control">
+    <label for="title" class="required">Title:</label>
+    <textarea type="text" id="title" name="title" placeholder="Title" formControlName="title"></textarea>
+    <span
+      *ngIf="(todoForm.controls['title'].invalid && todoForm.controls['title'].dirty && todoForm.controls['title'].touched) ||
+        (formSubmitted && todoForm.controls['title'].invalid)"
+      class="error-message">
+      Please fill title
+    </span>
+  </div>
+
+  <div>
+    <label for="title" class="required">Expiration Date:</label>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [min]="minDate" [matDatepicker]="picker" formControlName="expirationDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error>test</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="control">
+    <label for="title">Expiration Time:</label>
+    <mat-form-field appearance="outline">
+      <mat-label>Time</mat-label>
+      <input
+        type="text"
+        matInput
+        [ngxMatTimepicker]="timepicker"
+        [format]="24"
+        formControlName="expirationTime"
+      />
+    
+      <mat-icon
+        matPrefix
+        *ngIf="todoForm.controls['expirationTime'].value && !todoForm.controls['expirationTime'].disabled"
+        (click)="onClear()"
+      >
+        close
+      </mat-icon> 
+    
+      <mat-icon
+        matSuffix
+        *ngIf="!todoForm.controls['expirationTime'].disabled"
+        (click)="openFromIcon(timepicker)"
+        >schedule</mat-icon
+      >
+    </mat-form-field>
+    <span
+      *ngIf="todoForm.controls['expirationTime'].errors && todoForm.controls['expirationTime'].errors['invalidTime']"
+      class="error-message">
+      Please fill valid Expiration Time
+    </span>
+    
+    <ngx-mat-timepicker
+      #timepicker
+      [enableKeyboardInput]="true"
+      [min]="minTime"
+    ></ngx-mat-timepicker>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>

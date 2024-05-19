@@ -1,0 +1,70 @@
+@if(!isFavourite) {
+  <table>
+    <caption>Today TODO's</caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Created At</th>
+        <th>Time left</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (todo of todayTodoList; track todo.created) {
+        <tr>
+          <td>
+            <input type="checkbox">
+          </td>
+          <td>{{todo.title}}</td>
+          <td>{{todo.created | date:'mediumDate'}}</td>
+          <td  [appLeftUnderOne]="todo.timeLeft || ''">{{todo.timeLeft || 0}}</td>
+          <td (click)="favouriteTodo(todo.created)">
+            <img [style.background]="todo.favourite ? 'red': ''" width="25" height="25" src="assets/images/icons8-favourite-50.png" alt="favourite">
+          </td>
+          <td (click)="removeTodo(todo.created)">
+            <img width="30" height="30"  src="assets/images/icons8-remove-48.png" alt="remove">
+          </td>
+        </tr>
+      } @empty {
+        <p>There is no data</p>
+      }
+    </tbody>
+  </table>
+}
+
+
+<table>
+  <caption>My TODO list</caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Created At</th>
+      <th>Expiration</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (todo of todoList; track todo.created) {
+      <tr>
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>{{todo.title}}</td>
+        <td>{{todo.created | date:'mediumDate'}}</td>
+        <td>{{todo.expirationDate | date:'mediumDate'}}</td>
+        <td (click)="favouriteTodo(todo.created)">
+          <img [style.background]="todo.favourite ? 'red': ''" width="25" height="25" src="assets/images/icons8-favourite-50.png" alt="favourite">
+        </td>
+        <td (click)="removeTodo(todo.created)">
+          <img width="30" height="30"  src="assets/images/icons8-remove-48.png" alt="remove">
+        </td>
+      </tr>
+    } @empty {
+      <p>There is no data</p>
+    }
+  </tbody>
+</table>

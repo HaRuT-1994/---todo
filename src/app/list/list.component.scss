@@ -1,0 +1,37 @@
+table {
+  margin: 50px auto;
+  border: 1px solid rgb(76, 76, 76);
+  border-collapse: collapse;
+  min-width: 80vw;
+
+  caption {
+    padding-left: 10px;
+    text-align: left;
+    border: 1px solid rgb(76, 76, 76);
+  }
+
+  th, td {
+    text-align: center;
+  }
+
+  td:nth-child(2) {
+    text-align: left;
+    padding-top: 8px;
+    width: 50%;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+
+  tbody tr {
+    border: 1px solid rgb(76, 76, 76);
+  }
+
+  tbody td img {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
